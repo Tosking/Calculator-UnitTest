@@ -15,7 +15,7 @@ public class Parser {
         }
         return "0";
     }
-    public double Parse(string str)
+    public string Parse(string str)
     {
         List<string> elements = new List<string>();
         string temp = "";
@@ -29,7 +29,7 @@ public class Parser {
             else {
                 if(c == "("){
                     elements.Add(ParseBrackets(str.Substring(i+1)));
-                    while(c != ")"){ 
+                    while(c != ")" && (str.Length - 1) > i){ 
                         i++;
                         c = str[i].ToString();
                     }
@@ -51,20 +51,23 @@ public class Parser {
         elements.Add(temp);
         size++;
         double result = 0;
+        if(size == 1){
+            return elements[0];
+        }
         for(int i = 1; i < size; i += 2){
             double loper;
             string sign = elements[i];
             double roper;
             if(!double.TryParse(elements[i - 1], out loper)){
-                return 0;
+                return result.ToString();
             }
             if(!double.TryParse(elements[i + 1], out roper)){
-                return 0;
+                return result.ToString();
             }
             if(double.TryParse(elements[i], out double n)){
-                return 0;
+                return result.ToString();
             }
-            if(i == 1){
+            if(i == 1 && (elements[1] == "+" || elements[1] == "-")){
                 result += loper;
             }
             switch(sign){
@@ -76,12 +79,13 @@ public class Parser {
                     break;
                 case "*":
                     result += loper * roper;
+                    
                     break;
                 case "/":
                     result += loper / roper;
                     break;
             }
         }
-        return result;
+        return result.ToString();
     }
 }
