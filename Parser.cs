@@ -19,6 +19,7 @@ public class Parser {
     {
         List<string> elements = new List<string>();
         string temp = "";
+        char[] priority = {'*', '/', '+', '-'};
         int size = 0;
         for(int i = 0; i < str.Length; i++){
             string c = str[i].ToString();
@@ -49,53 +50,46 @@ public class Parser {
         elements.Add(temp);
         size++;
         double result = 0;
-        int k = 1;
         if(size == 1){
             return elements[0];
         }
-        for(int i = 1; i < size; i += 2){
-            while(k < size && k > 0){
-                if(elements[k] == "*" || elements[k] == "/"){
-                    i = k;
-                    k = 1;
+        foreach(char op in priority){
+            while(true){
+                int i = elements.FindIndex(x => op.ToString() == x);
+                if(i == -1)
                     break;
+                double loper;
+                string sign = elements[i];
+                double roper;
+                if(!double.TryParse(elements[i - 1], out loper)){
+                    return result.ToString();
                 }
-                k += 2;
-                if(k >= size){
-                    k = 0;
-                    i = 0;
-                    break;
+                if(!double.TryParse(elements[i + 1], out roper)){
+                    return result.ToString();
                 }
-            }
-            double loper;
-            string sign = elements[i];
-            double roper;
-            if(!double.TryParse(elements[i - 1], out loper)){
-                return result.ToString();
-            }
-            if(!double.TryParse(elements[i + 1], out roper)){
-                return result.ToString();
-            }
-            if(double.TryParse(elements[i], out double n)){
-                return result.ToString();
-            }
-            if(i == 1 && (elements[1] == "+" || elements[1] == "-")){
-                result += loper;
-            }
-            switch(sign){
-                case "+":
-                    result += roper;
-                    break;
-                case "-":
-                    result -= roper;
-                    break;
-                case "*":
-                    result += loper * roper;
-                    
-                    break;
-                case "/":
-                    result += loper / roper;
-                    break;
+                if(double.TryParse(elements[i], out double n)){
+                    return result.ToString();
+                }
+                if(i == 1 && (elements[1] == "+" || elements[1] == "-")){
+                    result += loper;
+                }
+                switch(sign){
+                    case "+":
+                        result = loper + roper;
+                        break;
+                    case "-":
+                        result = loper - roper;
+                        break;
+                    case "*":
+                        result = loper * roper;
+                        break;
+                    case "/":
+                        result = loper / roper;
+                        break;
+                }
+                elements[i] = result.ToString();
+                elements.RemoveAt(i - 1);
+                elements.RemoveAt(i + 1);
             }
         }
         return result.ToString();
