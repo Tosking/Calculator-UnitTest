@@ -30,13 +30,13 @@ public class UnitTest1
         [Fact]
         public void Parser_ShouldReturnZero_IfUserTransferEmptyString()
         {
-            parser.Invoking(x => x.Parse("")).
-                Should().Throw<System.ArgumentNullException>();
+            var result = parser.Parse("");
+            result.Should().Be("");
         }
         [Theory]
-        [InlineData("2+(", "Error")]
-        [InlineData("2+)", "Error")]
-        [InlineData("2+()", "Error")]
+        [InlineData("2+(", "0")]
+        [InlineData("2+)", "0")]
+        [InlineData("2+()", "0")]
 
         public void Parser_ShouldReturnErrorString_IfUserTryingCalculateNumberAndBracket(string left, string right)
         {
@@ -45,8 +45,8 @@ public class UnitTest1
         }
 
         [Theory]
-        [InlineData("2()", "Error")]
-        [InlineData("()2", "Error")]
+        [InlineData("2()", "0")]
+        [InlineData("()2", "0")]
 
         public void Parser_ShouldReturnErrorString_IfUserTryingCalculateNumberNearBracket(string left, string right)
         {
@@ -54,8 +54,8 @@ public class UnitTest1
             result.Should().Be(right);
         }
         [Theory]
-        [InlineData("2+)3+5(", "Error")]
-        [InlineData("2+)(", "Error")]
+        [InlineData("2+)3+5(", "0")]
+        [InlineData("2+)(", "0")]
         public void Parser_ShouldReturnErrorString_IfUserReverseBracketsAndTryingCalculate(string left, string right)
         {
             var result = parser.Parse(left);

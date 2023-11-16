@@ -17,7 +17,7 @@ public class Parser {
     }
     public string Parse(string str)
     {
-        List<string> elements = new List<string>();
+        List<string?> elements = new List<string?>();
         string temp = "";
         char[] priority = {'*', '/', '+', '-'};
         int size = 0;
@@ -30,7 +30,9 @@ public class Parser {
             else {
                 if(c == "("){
                     elements.Add(ParseBrackets(str.Substring(i+1)));
-                    while(c != ")" && (str.Length - 1) > i){ 
+                    while(c != ")"){
+                        if((str.Length - 1) <= i)
+                            return "0";
                         i++;
                         c = str[i].ToString();
                     }
@@ -50,8 +52,8 @@ public class Parser {
         elements.Add(temp);
         size++;
         double result = 0;
-        if(size == 1){
-            return elements[0];
+        if(size <= 1){
+            return elements[0] ?? "Error";
         }
         foreach(char op in priority){
             while(true){
@@ -59,7 +61,7 @@ public class Parser {
                 if(i == -1)
                     break;
                 double loper;
-                string sign = elements[i];
+                string? sign = elements[i];
                 double roper;
                 if(!double.TryParse(elements[i - 1], out loper)){
                     return result.ToString();
@@ -88,8 +90,9 @@ public class Parser {
                         break;
                 }
                 elements[i] = result.ToString();
-                elements.RemoveAt(i - 1);
-                elements.RemoveAt(i + 1);
+                elements[i - 1] = null;
+                elements[i + 1] = null;
+                elements.RemoveAll(item => item == null);
             }
         }
         return result.ToString();

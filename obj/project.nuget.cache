@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wezOf77FvK5Epz3bdHO7reoSWal0zZey2QQxVPNaghocJMZcH/1u2536xuBgsmgbqojSbnDKcu+XrKBjd24vKA==",
+  "dgSpecHash": "ZF00AVETTRDHRhXVtBLps3PPNX8Qkwk3jtfPUvGt2HLw3AleH1CTKNTnCDNwdC92gooe8XuX/9FqFXmZU9f0Mw==",
   "success": true,
-  "projectFilePath": "/home/taskavan/Документы/c#/TestProject1/TestProject1.csproj",
+  "projectFilePath": "/home/taskavan/Документы/c#/Calculator-UnitTest/TestProject1.csproj",
   "expectedPackageFiles": [
     "/home/taskavan/.nuget/packages/coverlet.collector/3.2.0/coverlet.collector.3.2.0.nupkg.sha512",
     "/home/taskavan/.nuget/packages/fluentassertions/6.12.0/fluentassertions.6.12.0.nupkg.sha512",
@@ -95,7 +95,8 @@
     "/home/taskavan/.nuget/packages/xunit.core/2.4.2/xunit.core.2.4.2.nupkg.sha512",
     "/home/taskavan/.nuget/packages/xunit.extensibility.core/2.4.2/xunit.extensibility.core.2.4.2.nupkg.sha512",
     "/home/taskavan/.nuget/packages/xunit.extensibility.execution/2.4.2/xunit.extensibility.execution.2.4.2.nupkg.sha512",
-    "/home/taskavan/.nuget/packages/xunit.runner.visualstudio/2.4.5/xunit.runner.visualstudio.2.4.5.nupkg.sha512"
+    "/home/taskavan/.nuget/packages/xunit.runner.visualstudio/2.4.5/xunit.runner.visualstudio.2.4.5.nupkg.sha512",
+    "/home/taskavan/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.13/microsoft.aspnetcore.app.ref.7.0.13.nupkg.sha512"
   ],
   "logs": []
 }

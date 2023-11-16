@@ -5656,11 +5656,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/taskavan/Документы/c#/TestProject1/TestProject1.csproj",
+      "projectUniqueName": "/home/taskavan/Документы/c#/Calculator-UnitTest/TestProject1.csproj",
       "projectName": "TestProject1",
-      "projectPath": "/home/taskavan/Документы/c#/TestProject1/TestProject1.csproj",
+      "projectPath": "/home/taskavan/Документы/c#/Calculator-UnitTest/TestProject1.csproj",
       "packagesPath": "/home/taskavan/.nuget/packages/",
-      "outputPath": "/home/taskavan/Документы/c#/TestProject1/obj/",
+      "outputPath": "/home/taskavan/Документы/c#/Calculator-UnitTest/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/taskavan/.nuget/NuGet/NuGet.Config"
@@ -5724,12 +5724,18 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.13, 7.0.13]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.401/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
       }
     }
   }
