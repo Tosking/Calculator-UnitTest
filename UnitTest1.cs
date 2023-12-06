@@ -13,7 +13,7 @@ public class UnitTest1
         [InlineData("1+5*(6+1)", "36")]
         [InlineData("5*7/2", "17,5")]
         [InlineData("5*7+(5)", "40")]
-        [InlineData("5*7+", "35")]
+        [InlineData("5*7", "35")]
 
         public void Parser_ShouldReturnResult(string left, string right)
         {
@@ -34,9 +34,9 @@ public class UnitTest1
             result.Should().Be("");
         }
         [Theory]
-        [InlineData("2+(", "0")]
-        [InlineData("2+)", "0")]
-        [InlineData("2+()", "0")]
+        [InlineData("2+(", "Error")]
+        [InlineData("2+)", "Error")]
+        [InlineData("2+()", "Error")]
 
         public void Parser_ShouldReturnErrorString_IfUserTryingCalculateNumberAndBracket(string left, string right)
         {
@@ -54,8 +54,8 @@ public class UnitTest1
             result.Should().Be(right);
         }
         [Theory]
-        [InlineData("2+)3+5(", "0")]
-        [InlineData("2+)(", "0")]
+        [InlineData("2+)3+5(", "Error")]
+        [InlineData("2+)(", "Error")]
         public void Parser_ShouldReturnErrorString_IfUserReverseBracketsAndTryingCalculate(string left, string right)
         {
             var result = parser.Parse(left);
